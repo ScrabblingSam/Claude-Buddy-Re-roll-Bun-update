@@ -1,8 +1,11 @@
 # Reroll Your Claude Code Buddy
 
-| Before | After |
-|--------|-------|
-| ![Before](images/before_reroll.png) | ![After](images/after_reroll.png) |
+<p align="center">
+  <img src="images/before_reroll.png" alt="Before" width="280">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/after_reroll.png" alt="After" width="280">
+</p>
+<p align="center"><b>Before</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>After</b></p>
 
 Choose the exact species, rarity, eyes, hat, and stats for your Claude Code companion.
 
@@ -29,8 +32,8 @@ What you *can* do is change which identity is used for the hash.
 ### Step 1: Clone and check your current buddy
 
 ```bash
-git clone https://github.com/user/claude-code-buddy-reroll.git
-cd claude-code-buddy-reroll
+git clone https://github.com/ScrabblingSam/Claude-Buddy-Re-roll-Bun-update.git
+cd Claude-Buddy-Re-roll-Bun-update
 node scripts/verify.js auto
 ```
 
@@ -93,6 +96,51 @@ Edit `~/.claude.json`:
 1. Quit Claude Code
 2. Relaunch
 3. Run `/buddy`
+
+---
+
+## Worked Example: Legendary Ghost
+
+Here's a full walkthrough from search to hatch.
+
+**1. Search for a legendary ghost**
+
+```bash
+$ node scripts/reroll.js ghost
+Searching for legendary ghost (max: 500,000, runtime: node)...
+
+  found: uncommon ghost -> d777dfd39ebbb4...
+  found: rare ghost -> b6cbb06ef861d5...
+  found: legendary ghost -> cbcbdbf4eac33ce5db2013daed4d67d855f977ba1d739f8e4b8ab9fa85f136f7
+
+Best: legendary ghost -> cbcbdbf4eac33ce5db2013daed4d67d855f977ba1d739f8e4b8ab9fa85f136f7
+```
+
+**2. Verify the result**
+
+```bash
+$ node scripts/verify.js cbcbdbf4eac33ce5db2013daed4d67d855f977ba1d739f8e4b8ab9fa85f136f7
+ID:      cbcbdbf4eac33ce5db2013daed4d67d855f977ba1d739f8e4b8ab9fa85f136f7
+Result:  legendary ghost
+Eye:     ×
+Hat:     wizard
+Shiny:   false
+Stats:   DEBUGGING:46  PATIENCE:100  CHAOS:72  WISDOM:51  SNARK:73
+```
+
+**3. Apply to `~/.claude.json`**
+
+```json
+{
+  "userID": "cbcbdbf4eac33ce5db2013daed4d67d855f977ba1d739f8e4b8ab9fa85f136f7",
+  "oauthAccount": {
+    "emailAddress": "you@example.com",
+    "organizationName": "Your Org"
+  }
+}
+```
+
+Remember to delete the `"companion"` field and `"accountUuid"` (if present), then restart Claude Code and run `/buddy`.
 
 ---
 
